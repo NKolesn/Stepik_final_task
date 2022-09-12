@@ -2,10 +2,6 @@ from .base_page import BasePage
 from .locators import BasePageLocators
 
 class BasketPage(BasePage):
-    def should_not_be_product_in_basket(self):
-        assert self.is_not_element_present(*BasePageLocators.ITEM_LOCATOR), \
-           "Product item is presented, but should not be"
-
     def should_be_message_basket_is_empty(self):
         languages = {
     "لعربيّة": "سلة التسوق فارغة",
@@ -35,5 +31,7 @@ class BasketPage(BasePage):
         basket_isempty = self.browser.find_element(*BasePageLocators.BASKET_ISEMPTY)
         assert current_language in basket_isempty.text, "Message isn't present"
         
-
+    def should_not_be_product_in_basket(self):
+        assert self.is_not_element_present(*BasePageLocators.ITEM_LOCATOR), \
+           "Product item is presented, but should not be"
 
